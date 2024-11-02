@@ -1,0 +1,17 @@
+{
+  "admin": [
+    123456,
+    2222
+  ],
+  "task-millisecond": 30000,
+  "token": "githubToken",
+  "project": [
+      "作者/仓库名"
+  ],
+  "group": [
+    1548
+  ],
+  "users": [
+    4876
+  ]
+}
