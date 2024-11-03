@@ -88,7 +88,7 @@ class Commits {
 
                 message = JSONObject.parseObject(commit.toString())["message"]
                 html = jsonObject["html_url"]
-                val sendHtml = html.toString().split("/")[5] + "/" + html.toString().split("/")[6]
+                val sendHtml = html.toString().split("/")[6]
 
                 val committers: Any? = jsonObject["committer"]
                 avatar = JSONObject.parseObject(committers.toString())["avatar_url"]

@@ -135,11 +135,11 @@ class CardUtil {
         //头像
         val avatarInputStream = ByteArrayInputStream(ImageUtil.Companion.getImage(avatar).toByteArray())
         val avatarBufferedImage = ImageIO.read(avatarInputStream)
-        drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 120.0, 240, 240, 30, 1.0F)
+        drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 120.0, 200, 200, 60, 1.0F)
 
         //框框
-        drawBox(g, cardWidth / 20.0, 400.0, 240, 80, 30, 0.5F)
-        drawBox(g, 320.0, 100.0, 1159 - 320, 400, 30, 0.5F)
+        drawBox(g, cardWidth / 20.0, 380.0, 200, 80, 60, 0.5F)
+        drawBox(g, 320.0, 100.0, 1159 - 320, 400, 60, 0.5F)
 
         //icon
         val x = 320 + 40
@@ -163,6 +163,11 @@ class CardUtil {
         g.drawString(message, x + 70, y + 100 + 32)
         g.drawString(html.asSequence().take(7).joinToString(""), x + 70, y + 150 + 32)
 
+
+        // 下载并绘制 GitHub logo
+        val githubLogoUrl = URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
+        val githubLogo = ImageIO.read(githubLogoUrl)
+        g.drawImage(githubLogo, 1000, 500, 100, 100, null)
         g.dispose()
 
         val outputStream = ByteArrayOutputStream()
