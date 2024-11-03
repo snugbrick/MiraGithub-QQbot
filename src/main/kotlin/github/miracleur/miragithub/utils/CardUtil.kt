@@ -119,7 +119,7 @@ class CardUtil {
         val g: Graphics2D = cardImage.createGraphics()
 
         //背景
-        val backgroundImage = ImageIO.read(File("back.png"))
+        val backgroundImage = ImageIO.read(this::class.java.classLoader.getResource("key.png"))
         g.drawImage(backgroundImage, 0, 0, cardImage.width, cardImage.height, null)
 
         // 创建高斯模糊操作
