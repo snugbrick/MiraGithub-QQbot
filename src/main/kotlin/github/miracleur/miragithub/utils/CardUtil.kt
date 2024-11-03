@@ -51,7 +51,7 @@ class CardUtil {
         g.color = Color.WHITE
         g.fillRect(0, 0, cardWidth, cardHeight)
 
-        g.font = Font("Arial", Font.PLAIN, 64)
+        g.font = Font("Microsoft YaHei", Font.PLAIN, 48)
         g.color = Color.BLACK
 
         val avatarInputStream = ByteArrayInputStream(ImageUtil.Companion.getImage(avatar).toByteArray())
@@ -61,7 +61,7 @@ class CardUtil {
         // 下载并绘制 GitHub logo
         val githubLogoUrl = URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
         val githubLogo = ImageIO.read(githubLogoUrl)
-        g.drawImage(githubLogo, 1000, 400, 100, 100, null)
+        g.drawImage(githubLogo, 1000, 500, 100, 100, null)
 
         val code = ImageIO.read(this::class.java.classLoader.getResource("code.png"))
         val clock = ImageIO.read(this::class.java.classLoader.getResource("clock.png"))
