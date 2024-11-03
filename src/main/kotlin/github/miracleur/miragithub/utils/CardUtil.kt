@@ -51,7 +51,7 @@ class CardUtil {
         g.color = Color.WHITE
         g.fillRect(0, 0, cardWidth, cardHeight)
 
-        g.font = Font("Microsoft YaHei", Font.PLAIN, 36)
+        g.font = Font("Microsoft YaHei", Font.PLAIN, 32)
         g.color = Color.BLACK
 
         val avatarInputStream = ByteArrayInputStream(ImageUtil.Companion.getImage(avatar).toByteArray())
@@ -63,19 +63,21 @@ class CardUtil {
         val githubLogo = ImageIO.read(githubLogoUrl)
         g.drawImage(githubLogo, 1000, 500, 100, 100, null)
 
+        val x = 30
+        val y = 120
         val code = ImageIO.read(this::class.java.classLoader.getResource("code.png"))
         val clock = ImageIO.read(this::class.java.classLoader.getResource("clock.png"))
         val chat = ImageIO.read(this::class.java.classLoader.getResource("chat.png"))
         val key = ImageIO.read(this::class.java.classLoader.getResource("key.png"))
-        g.drawImage(code, 30, 120, 40, 40, null)
-        g.drawImage(clock, 30, 170, 40, 40, null)
-        g.drawImage(chat, 30, 220, 40, 40, null)
-        g.drawImage(key, 30, 270, 40, 40, null)
+        g.drawImage(code, x, y, 40, 40, null)
+        g.drawImage(clock, x, y + 50, 40, 40, null)
+        g.drawImage(chat, x, y + 100, 40, 40, null)
+        g.drawImage(key, x, y + 150, 40, 40, null)
 
-        g.drawString("$name commit code for $projects", 100, 120)
-        g.drawString("time: $time", 100, 170)
-        g.drawString("message: $message", 100, 220)
-        g.drawString("sha: $shaMsg", 100, 270)
+        g.drawString("$name commit code for $projects", x + 70, y)
+        g.drawString("time: $time", x + 70, y + 50)
+        g.drawString("message: $message", x + 70, y + 100)
+        g.drawString("sha: $shaMsg", x + 70, y + 150)
 
         // 在底部绘制颜色带 (205, 255, 247)
         g.color = Color(205, 255, 247)
