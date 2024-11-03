@@ -54,14 +54,20 @@ class CardUtil {
         g.font = Font("Microsoft YaHei", Font.PLAIN, 32)
         g.color = Color.BLACK
 
+        //头像
         val avatarInputStream = ByteArrayInputStream(ImageUtil.Companion.getImage(avatar).toByteArray())
         val avatarBufferedImage = ImageIO.read(avatarInputStream)
-        g.drawImage(avatarBufferedImage, 800, 100, 300, 300, null)
+        g.drawImage(avatarBufferedImage, 1000, 0, 200, 200, null)
+
+        // 在底部绘制颜色带 (205, 255, 247)
+        g.color = Color(205, 255, 247)
+        val bandHeight = cardHeight / 7
+        g.fillRect(0, cardHeight - bandHeight, cardWidth, bandHeight)
 
         // 下载并绘制 GitHub logo
         val githubLogoUrl = URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
         val githubLogo = ImageIO.read(githubLogoUrl)
-        g.drawImage(githubLogo, 1000, 500, 100, 100, null)
+        g.drawImage(githubLogo, 1050, 600, 100, 100, null)
 
         val x = 30
         val y = 120
@@ -74,15 +80,10 @@ class CardUtil {
         g.drawImage(chat, x, y + 100, 40, 40, null)
         g.drawImage(key, x, y + 150, 40, 40, null)
 
-        g.drawString("$name 为${projects.split("/")[1]}", x + 70, y + 32)
-        g.drawString("time: $time", x + 70, y + 50 + 32)
-        g.drawString("message: $message", x + 70, y + 100 + 32)
-        g.drawString("html: $html", x + 70, y + 150 + 32)
-
-        // 在底部绘制颜色带 (205, 255, 247)
-        g.color = Color(205, 255, 247)
-        val bandHeight = cardHeight / 7
-        g.fillRect(0, cardHeight - bandHeight, cardWidth, bandHeight)
+        g.drawString("检测到 {$name} 为 ${projects.split("/")[1]} 提交了代码", x + 70, y + 32)
+        g.drawString(time, x + 70, y + 50 + 32)
+        g.drawString(message, x + 70, y + 100 + 32)
+        g.drawString(html, x + 70, y + 150 + 32)
 
         g.dispose() // 释放
 
