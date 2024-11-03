@@ -36,7 +36,7 @@ class CardUtil {
     }
 
     @Throws(Exception::class)
-    suspend fun getNewCard(shaMsg: String, message: String, projects: String, avatar: String, name: String, time: String, event: Contact): Image {
+    suspend fun getNewCard(html: String, message: String, projects: String, avatar: String, name: String, time: String, event: Contact): Image {
         val avatarResource: ExternalResource = ImageUtil.Companion.getImage(avatar).toByteArray().toExternalResource()
         //val avatarImageId: String = avatarResource.uploadAsImage(event).imageId
         withContext(Dispatchers.IO) {
@@ -74,10 +74,10 @@ class CardUtil {
         g.drawImage(chat, x, y + 100, 40, 40, null)
         g.drawImage(key, x, y + 150, 40, 40, null)
 
-        g.drawString("$name 为${projects.split("/")[1]}", x + 70, y - 32)
-        g.drawString("time: $time", x + 70, y + 50 - 32)
-        g.drawString("message: $message", x + 70, y + 100 - 32)
-        g.drawString("sha: $shaMsg", x + 70, y + 150 - 32)
+        g.drawString("$name 为${projects.split("/")[1]}", x + 70, y + 32)
+        g.drawString("time: $time", x + 70, y + 50 + 32)
+        g.drawString("message: $message", x + 70, y + 100 + 32)
+        g.drawString("html: $html", x + 70, y + 150 + 32)
 
         // 在底部绘制颜色带 (205, 255, 247)
         g.color = Color(205, 255, 247)
