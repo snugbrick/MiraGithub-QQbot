@@ -1,6 +1,5 @@
 package github.miracleur.miragithub.utils
 
-import github.miracleur.miragithub.GithubTask.Companion.logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.mamoe.mirai.contact.Contact
@@ -14,6 +13,7 @@ import java.awt.Graphics2D
 import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.net.URL
 import javax.imageio.ImageIO
 
 class CardUtil {
@@ -58,10 +58,21 @@ class CardUtil {
         val avatarBufferedImage = ImageIO.read(avatarInputStream)
         g.drawImage(avatarBufferedImage, 800, 100, 400, 400, null)
 
+        // 下载并绘制 GitHub logo
+        val githubLogoUrl = URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
+        val githubLogo = ImageIO.read(githubLogoUrl)
+        g.drawImage(githubLogo, cardWidth - 120, cardHeight - 120, 100, 100, null)
+
         g.drawString(name, 50, 100)
-        g.drawString("时间：$time",50, 170)
+        g.drawString("时间：$time", 50, 170)
         g.drawString("介绍：$message", 50, 220)
         g.drawString("网址：$html", 50, 270)
+
+        // 在底部绘制颜色带 (205, 255, 247)
+        g.color = Color(205, 255, 247)
+        val bandHeight = cardHeight / 7
+        g.fillRect(0, cardHeight - bandHeight, cardWidth, bandHeight)
+
         g.dispose() // 释放
 
         val outputStream = ByteArrayOutputStream()
