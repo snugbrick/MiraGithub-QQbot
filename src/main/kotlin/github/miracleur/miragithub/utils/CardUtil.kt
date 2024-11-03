@@ -135,11 +135,12 @@ class CardUtil {
         //头像
         val avatarInputStream = ByteArrayInputStream(ImageUtil.Companion.getImage(avatar).toByteArray())
         val avatarBufferedImage = ImageIO.read(avatarInputStream)
-        drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 120.0, 200, 200, 60, 1.0F)
+        drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 140.0, 200, 200, 60, 1.0F)
 
         //框框
-        drawBox(g, cardWidth / 20.0, 380.0, 200, 80, 60, 0.5F)
-        drawBox(g, 320.0, 100.0, 1159 - 320, 400, 60, 0.5F)
+        val boxLength = 370.0
+        drawBox(g, cardWidth / 20.0, boxLength, 200, 80, 60, 0.5F)
+        drawBox(g, 320.0, 60.0, 1159 - 320, 480, 60, 0.5F)
 
         //icon
         val x = 320 + 40
@@ -156,7 +157,7 @@ class CardUtil {
         //字
         g.font = Font("Microsoft YaHei", Font.PLAIN, 32)
         g.color = Color.BLACK
-        g.drawString(name, cardWidth / 20 + 20, 420 + 32)
+        g.drawString(name, cardWidth / 20 + 20, boxLength.toInt() + 32)
 
         g.drawString("检测到 $name 为 ${projects.split("/")[1]} 提交了代码", x + 70, y + 32)
         g.drawString(time, x + 70, y + 50 + 32)
