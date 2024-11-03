@@ -51,7 +51,7 @@ class CardUtil {
         g.color = Color.WHITE
         g.fillRect(0, 0, cardWidth, cardHeight)
 
-        g.font = Font("Microsoft YaHei", Font.PLAIN, 48)
+        g.font = Font("Microsoft YaHei", Font.PLAIN, 36)
         g.color = Color.BLACK
 
         val avatarInputStream = ByteArrayInputStream(ImageUtil.Companion.getImage(avatar).toByteArray())
