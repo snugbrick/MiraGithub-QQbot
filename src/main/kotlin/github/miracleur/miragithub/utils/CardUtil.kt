@@ -109,6 +109,7 @@ class CardUtil {
     @Throws(Exception::class)
     suspend fun getCard(html: String, message: String, projects: String, avatar: String, name: String, time: String, event: Contact): Image {
         val avatarResource: ExternalResource = ImageUtil.Companion.getImage(avatar).toByteArray().toExternalResource()
+        val theImageId: String = avatarResource.uploadAsImage(event).imageId
         withContext(Dispatchers.IO) {
             avatarResource.close()
         }
@@ -119,7 +120,7 @@ class CardUtil {
         val g: Graphics2D = cardImage.createGraphics()
 
         //背景
-        val backgroundImage = ImageIO.read(this::class.java.classLoader.getResource("key.png"))
+        val backgroundImage = ImageIO.read(this::class.java.classLoader.getResource("back.png"))
         g.drawImage(backgroundImage, 0, 0, cardImage.width, cardImage.height, null)
 
         // 创建高斯模糊操作
@@ -132,13 +133,14 @@ class CardUtil {
         val blurredImage = convolveOp.filter(backgroundImage, null)
         g.drawImage(blurredImage, 0, 0, 1200, 700, null)
         //头像
+        //头像
         val avatarInputStream = ByteArrayInputStream(ImageUtil.Companion.getImage(avatar).toByteArray())
         val avatarBufferedImage = ImageIO.read(avatarInputStream)
-        drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 280.0, cardWidth / 3, cardHeight / 3, 10, 0.0F)
+        drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 280.0, cardWidth / 3, cardHeight / 3, 30, 1.0F)
 
         //框框
-        drawBox(g, cardWidth / 20.0, 400.0, cardWidth / 3, cardHeight / 3, 10, 0.5F)
-        drawBox(g, 290.0, 100.0, 1159 - 290, 400, 10, 0.5F)
+        drawBox(g, cardWidth / 20.0, 400.0, 180, 80, 30, 0.5F)
+        drawBox(g, 320.0, 100.0, 1159 - 320, 400, 30, 0.5F)
 
         //字
         g.font = Font("Microsoft YaHei", Font.PLAIN, 32)
