@@ -97,7 +97,7 @@ class Commits {
                 for (e in groups) {
                     for (bot in bots) {
                         bot.getGroup(e.toString().toLong())?.sendMessage(
-                            CardUtil().getNewCard(
+                            CardUtil().getCard(
                                 html = sendHtml,
                                 message = message.toString(),
                                 projects.toString(),
@@ -112,7 +112,7 @@ class Commits {
                 for (u in users) {
                     for (bot in bots) {
                         bot.getStranger(u.toString().toLong())?.sendMessage(
-                            CardUtil().getNewCard(
+                            CardUtil().getCard(
                                 html = sendHtml,
                                 message = message.toString(),
                                 projects.toString(),
