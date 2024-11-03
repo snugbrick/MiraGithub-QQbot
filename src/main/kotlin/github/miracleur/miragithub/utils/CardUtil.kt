@@ -138,12 +138,12 @@ class CardUtil {
         drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 120.0, 240, 240, 30, 1.0F)
 
         //框框
-        drawBox(g, cardWidth / 20.0, 400.0, 180, 80, 30, 0.5F)
+        drawBox(g, cardWidth / 20.0, 400.0, 240, 80, 30, 0.5F)
         drawBox(g, 320.0, 100.0, 1159 - 320, 400, 30, 0.5F)
 
         //icon
-        val x = 320 + 60
-        val y = 100 + 60
+        val x = 320 + 40
+        val y = 100 + 40
         val code = ImageIO.read(this::class.java.classLoader.getResource("code.png"))
         val clock = ImageIO.read(this::class.java.classLoader.getResource("clock.png"))
         val chat = ImageIO.read(this::class.java.classLoader.getResource("chat.png"))
@@ -161,7 +161,7 @@ class CardUtil {
         g.drawString("检测到 $name 为 ${projects.split("/")[1]} 提交了代码", x + 70, y + 32)
         g.drawString(time, x + 70, y + 50 + 32)
         g.drawString(message, x + 70, y + 100 + 32)
-        g.drawString(html, x + 70, y + 150 + 32)
+        g.drawString(html.asSequence().take(7).joinToString(""), x + 70, y + 150 + 32)
 
         g.dispose()
 
