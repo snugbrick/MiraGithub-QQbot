@@ -144,7 +144,7 @@ class CardUtil {
 
         //icon
         val x = 320 + 40
-        val y = 100 + 40
+        val y = 60 + 40
         val code = ImageIO.read(this::class.java.classLoader.getResource("code.png"))
         val clock = ImageIO.read(this::class.java.classLoader.getResource("clock.png"))
         val chat = ImageIO.read(this::class.java.classLoader.getResource("chat.png"))
@@ -157,7 +157,7 @@ class CardUtil {
         //字
         g.font = Font("Microsoft YaHei", Font.PLAIN, 32)
         g.color = Color.BLACK
-        g.drawString(name, cardWidth / 20 + 20, boxLength.toInt() + 32)
+        g.drawString(name, cardWidth / 20 + 20, boxLength.toInt() + 48)
 
         g.drawString("检测到 $name 为 ${projects.split("/")[1]} 提交了代码", x + 70, y + 32)
         g.drawString(time, x + 70, y + 50 + 32)
@@ -166,9 +166,9 @@ class CardUtil {
 
 
         // 下载并绘制 GitHub logo
-        val githubLogoUrl = URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
-        val githubLogo = ImageIO.read(githubLogoUrl)
-        g.drawImage(githubLogo, 1000, 500, 100, 100, null)
+//        val githubLogoUrl = URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
+//        val githubLogo = ImageIO.read(githubLogoUrl)
+//        g.drawImage(githubLogo, 1000, 500, 100, 100, null)
         g.dispose()
 
         val outputStream = ByteArrayOutputStream()
