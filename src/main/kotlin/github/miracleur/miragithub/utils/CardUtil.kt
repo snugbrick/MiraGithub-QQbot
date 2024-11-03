@@ -121,7 +121,7 @@ class CardUtil {
 
         //背景
         val backgroundImage = ImageIO.read(this::class.java.classLoader.getResource("back.png"))
-        g.drawImage(backgroundImage, 0, 0, cardImage.width, cardImage.height, null)
+        g.drawImage(backgroundImage, 0, 0, 1200, 600, null)
 
         // 创建高斯模糊操作
         val radius = 15
@@ -131,12 +131,12 @@ class CardUtil {
 
         // 应用模糊效果
         val blurredImage = convolveOp.filter(backgroundImage, null)
-        g.drawImage(blurredImage, 0, 0, 1200, 700, null)
-        //头像
+        g.drawImage(blurredImage, 0, 0, 1200, 600, null)
+
         //头像
         val avatarInputStream = ByteArrayInputStream(ImageUtil.Companion.getImage(avatar).toByteArray())
         val avatarBufferedImage = ImageIO.read(avatarInputStream)
-        drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 280.0, cardWidth / 3, cardHeight / 3, 30, 1.0F)
+        drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 90.0, 240, 240, 30, 1.0F)
 
         //框框
         drawBox(g, cardWidth / 20.0, 400.0, 180, 80, 30, 0.5F)
