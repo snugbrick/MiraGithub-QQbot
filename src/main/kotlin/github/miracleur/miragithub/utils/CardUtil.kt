@@ -36,7 +36,7 @@ class CardUtil {
     }
 
     @Throws(Exception::class)
-    suspend fun getNewCard(message: String, html: String, avatar: String, name: String, time: String, event: Contact): Image {
+    suspend fun getNewCard(shaMsg: String, message: String, projects: String, avatar: String, name: String, time: String, event: Contact): Image {
         val avatarResource: ExternalResource = ImageUtil.Companion.getImage(avatar).toByteArray().toExternalResource()
         //val avatarImageId: String = avatarResource.uploadAsImage(event).imageId
         withContext(Dispatchers.IO) {
@@ -51,22 +51,31 @@ class CardUtil {
         g.color = Color.WHITE
         g.fillRect(0, 0, cardWidth, cardHeight)
 
-        g.font = Font("Arial", Font.PLAIN, 32)
+        g.font = Font("Arial", Font.PLAIN, 64)
         g.color = Color.BLACK
 
         val avatarInputStream = ByteArrayInputStream(ImageUtil.Companion.getImage(avatar).toByteArray())
         val avatarBufferedImage = ImageIO.read(avatarInputStream)
-        g.drawImage(avatarBufferedImage, 800, 100, 400, 400, null)
+        g.drawImage(avatarBufferedImage, 800, 100, 300, 300, null)
 
         // 下载并绘制 GitHub logo
         val githubLogoUrl = URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
         val githubLogo = ImageIO.read(githubLogoUrl)
-        g.drawImage(githubLogo, cardWidth - 120, cardHeight - 120, 100, 100, null)
+        g.drawImage(githubLogo, 1000, 400, 100, 100, null)
 
-        g.drawString(name, 50, 100)
-        g.drawString("时间：$time", 50, 170)
-        g.drawString("介绍：$message", 50, 220)
-        g.drawString("网址：$html", 50, 270)
+        val code = ImageIO.read(this::class.java.classLoader.getResource("code.png"))
+        val clock = ImageIO.read(this::class.java.classLoader.getResource("clock.png"))
+        val chat = ImageIO.read(this::class.java.classLoader.getResource("chat.png"))
+        val key = ImageIO.read(this::class.java.classLoader.getResource("key.png"))
+        g.drawImage(code, 30, 120, 40, 40, null)
+        g.drawImage(clock, 30, 170, 40, 40, null)
+        g.drawImage(chat, 30, 220, 40, 40, null)
+        g.drawImage(key, 30, 270, 40, 40, null)
+
+        g.drawString("$name commit code for $projects", 100, 120)
+        g.drawString("time: $time", 100, 170)
+        g.drawString("message: $message", 100, 220)
+        g.drawString("sha: $shaMsg", 100, 270)
 
         // 在底部绘制颜色带 (205, 255, 247)
         g.color = Color(205, 255, 247)

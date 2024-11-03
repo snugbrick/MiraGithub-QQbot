@@ -97,11 +97,12 @@ class Commits {
                     for (bot in bots) {
                         bot.getGroup(e.toString().toLong())?.sendMessage(
                             CardUtil().getNewCard(
+                                jsonObject["sha"].toString(),
                                 message = message.toString(),
-                                html = html.toString(),
+                                projects.toString(),
                                 avatar = avatar.toString(),
                                 time = time.toString(),
-                                name = name.toString() + "为${projects.toString()}推送了代码",
+                                name = name.toString(),// + "为${projects.toString()}推送了代码",
                                 event = bot.getFriendOrGroup(e.toString().toLong())
                             )
                         )
@@ -111,11 +112,12 @@ class Commits {
                     for (bot in bots) {
                         bot.getStranger(u.toString().toLong())?.sendMessage(
                             CardUtil().getNewCard(
+                                jsonObject["sha"].toString(),
                                 message = message.toString(),
-                                html = html.toString(),
+                                projects.toString(),
                                 avatar = avatar.toString(),
                                 time = time.toString(),
-                                name = name.toString() + "为${projects.toString()}推送了代码",
+                                name = name.toString(),// + "为${projects.toString()}推送了代码",
                                 event = bot.getFriendOrGroup(u.toString().toLong())
                             )
                         )
