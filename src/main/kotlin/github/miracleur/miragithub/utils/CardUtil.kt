@@ -157,7 +157,7 @@ class CardUtil {
         //字
         g.font = Font("Microsoft YaHei", Font.PLAIN, 32)
         g.color = Color.BLACK
-        g.drawString(name, cardWidth / 20 + 20, boxLength.toInt() + 48)
+        g.drawString(name, cardWidth / 20 + 20, boxLength.toInt() + 50)
 
         g.drawString("检测到 $name 为 ${projects.split("/")[1]} 提交了代码", x + 70, y + 32)
         g.drawString(time, x + 70, y + 50 + 32)
