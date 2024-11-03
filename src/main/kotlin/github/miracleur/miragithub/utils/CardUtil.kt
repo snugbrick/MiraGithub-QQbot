@@ -63,6 +63,7 @@ class CardUtil {
         g.color = Color(205, 255, 247)
         val bandHeight = cardHeight / 7
         g.fillRect(0, cardHeight - bandHeight, cardWidth, bandHeight)
+        g.color = Color.GRAY
 
         // 下载并绘制 GitHub logo
         val githubLogoUrl = URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
@@ -80,6 +81,7 @@ class CardUtil {
         g.drawImage(chat, x, y + 100, 40, 40, null)
         g.drawImage(key, x, y + 150, 40, 40, null)
 
+        g.color = Color.BLACK
         g.drawString("检测到 {$name} 为 ${projects.split("/")[1]} 提交了代码", x + 70, y + 32)
         g.drawString(time, x + 70, y + 50 + 32)
         g.drawString(message, x + 70, y + 100 + 32)
