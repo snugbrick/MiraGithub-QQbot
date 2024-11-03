@@ -107,7 +107,6 @@ class Commits {
                         )
                     }
                 }
-                logger.info("已向群组推送更新")
                 for (u in users) {
                     for (bot in bots) {
                         bot.getStranger(u.toString().toLong())?.sendMessage(
@@ -122,7 +121,7 @@ class Commits {
                         )
                     }
                 }
-                logger.info("已向好友推送更新")
+                logger.info("已推送更新")
             }
         } catch (e: SocketTimeoutException) {
             logger.warning("请求超时")
