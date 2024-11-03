@@ -75,7 +75,7 @@ class Pulls {
             for (e in GithubTask.groups) {
                 for (bot in bots){
                     bot.getGroup(e.toString().toLong())?.sendMessage(
-                        CardUtil().process(
+                        CardUtil().getOldCard(
                             message = pullItem.title.toString(),
                             html = pullItem.htmlUrl.toString(),
                             avatar = pullItem.user!!.avatarUrl.toString(),
@@ -90,7 +90,7 @@ class Pulls {
             for (u in GithubTask.users) {
                 for (bot in bots){
                     bot.getStranger(u.toString().toLong())?.sendMessage(
-                        CardUtil().process(
+                        CardUtil().getOldCard(
                             message = pullItem.title.toString(),
                             html = pullItem.htmlUrl.toString(),
                             avatar = pullItem.user!!.avatarUrl.toString(),

@@ -71,7 +71,7 @@ class Releases {
             for (e in GithubTask.groups) {
                 for (bot in bots){
                     bot.getGroup(e.toString().toLong())?.sendMessage(
-                        CardUtil().process(
+                        CardUtil().getOldCard(
                             message = release.name.toString(),
                             html = release.htmlUrl.toString(),
                             avatar = release.author!!.avatarUrl.toString(),
@@ -86,7 +86,7 @@ class Releases {
             for (u in GithubTask.users) {
                 for (bot in bots){
                     bot.getStranger(u.toString().toLong())?.sendMessage(
-                        CardUtil().process(
+                        CardUtil().getOldCard(
                             message = release.name.toString(),
                             html = release.htmlUrl.toString(),
                             avatar = release.author!!.avatarUrl.toString(),

@@ -44,12 +44,12 @@ class Commits {
 //        logger.warning("${projects.toString()} => ${branch.toString()}")
         val bots = Bot.instances
         try {
-            val request = if (RateLimits().isResidue()){
+            val request = if (RateLimits().isResidue()) {
                 Request.Builder()
                     .url("https://api.github.com/repos/${projects.toString()}/commits/${branch.toString()}")
                     .addHeader("Authorization", "token $token")
                     .addHeader("Accept", "application/vnd.github.v3+json").build()
-            }else{
+            } else {
                 Request.Builder()
                     .url("https://api.github.com/repos/${projects.toString()}/commits/${branch.toString()}")
                     .addHeader("Accept", "application/vnd.github.v3+json").build()
@@ -67,7 +67,7 @@ class Commits {
                 if (sha["${projects}/$branch"].contentEquals(jsonObject["sha"].toString())) {
                     return
                 }
-                if (null == sha["${projects}/$branch"]){
+                if (null == sha["${projects}/$branch"]) {
                     sha["${projects}/$branch"] = jsonObject["sha"].toString()
                     return
                 }
@@ -92,45 +92,47 @@ class Commits {
                 val committers: Any? = jsonObject["committer"]
                 avatar = JSONObject.parseObject(committers.toString())["avatar_url"]
 
-                    for (e in groups) {
-                        for (bot in bots){
-                            bot.getGroup(e.toString().toLong())?.sendMessage(
-                                CardUtil().process(
-                                    message = message.toString(),
-                                    html = html.toString(),
-                                    avatar = avatar.toString(),
-                                    time = time.toString(),
-                                    name = name.toString()+ "为${projects.toString()}推送了代码",
-                                    event = bot.getFriendOrGroup(e.toString().toLong())
-                                )
+                logger.info("检测到了${projects.toString()}的${branch.toString()}分支有更新")
+                for (e in groups) {
+                    for (bot in bots) {
+                        bot.getGroup(e.toString().toLong())?.sendMessage(
+                            CardUtil().getNewCard(
+                                message = message.toString(),
+                                html = html.toString(),
+                                avatar = avatar.toString(),
+                                time = time.toString(),
+                                name = name.toString() + "为${projects.toString()}推送了代码",
+                                event = bot.getFriendOrGroup(e.toString().toLong())
                             )
-                        }
+                        )
                     }
-
-                    for (u in users) {
-                        for (bot in bots){
-                            bot.getStranger(u.toString().toLong())?.sendMessage(
-                                CardUtil().process(
-                                    message = message.toString(),
-                                    html = html.toString(),
-                                    avatar = avatar.toString(),
-                                    time = time.toString(),
-                                    name = name.toString()+ "为${projects.toString()}推送了代码",
-                                    event = bot.getFriendOrGroup(u.toString().toLong())
-                                )
+                }
+                logger.info("已向群组推送更新")
+                for (u in users) {
+                    for (bot in bots) {
+                        bot.getStranger(u.toString().toLong())?.sendMessage(
+                            CardUtil().getNewCard(
+                                message = message.toString(),
+                                html = html.toString(),
+                                avatar = avatar.toString(),
+                                time = time.toString(),
+                                name = name.toString() + "为${projects.toString()}推送了代码",
+                                event = bot.getFriendOrGroup(u.toString().toLong())
                             )
-                        }
+                        )
                     }
+                }
+                logger.info("已向好友推送更新")
             }
-        }catch (e: SocketTimeoutException){
+        } catch (e: SocketTimeoutException) {
             logger.warning("请求超时")
             return
-        }catch (e: ConnectException){
+        } catch (e: ConnectException) {
             logger.warning("无法连接到api.github.com")
             return
         } catch (e: Exception) {
             e.printStackTrace()
-        }finally {
+        } finally {
             response?.close()
         }
     }

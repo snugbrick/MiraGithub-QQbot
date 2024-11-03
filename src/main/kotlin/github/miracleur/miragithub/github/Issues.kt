@@ -75,7 +75,7 @@ class Issues {
                 for (bot in bots){
 
                     bot.getGroup(e.toString().toLong())?.sendMessage(
-                        CardUtil().process(
+                        CardUtil().getOldCard(
                             message = issueItem.title.toString(),
                             html = issueItem.htmlUrl.toString(),
                             avatar = issueItem.user!!.avatarUrl.toString(),
@@ -90,7 +90,7 @@ class Issues {
             for (u in GithubTask.users) {
                 for (bot in bots){
                     bot.getStranger(u.toString().toLong())?.sendMessage(
-                        CardUtil().process(
+                        CardUtil().getOldCard(
                             message = issueItem.title.toString(),
                             html = issueItem.htmlUrl.toString(),
                             avatar = issueItem.user!!.avatarUrl.toString(),
