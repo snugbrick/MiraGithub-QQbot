@@ -17,7 +17,6 @@ import java.awt.image.ConvolveOp
 import java.awt.image.Kernel
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
-import java.io.File
 import java.net.URL
 import javax.imageio.ImageIO
 
@@ -136,16 +135,33 @@ class CardUtil {
         //头像
         val avatarInputStream = ByteArrayInputStream(ImageUtil.Companion.getImage(avatar).toByteArray())
         val avatarBufferedImage = ImageIO.read(avatarInputStream)
-        drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 90.0, 240, 240, 30, 1.0F)
+        drawRoundedImageWithOpacity(g, avatarBufferedImage, cardWidth / 20.0, 120.0, 240, 240, 30, 1.0F)
 
         //框框
         drawBox(g, cardWidth / 20.0, 400.0, 180, 80, 30, 0.5F)
         drawBox(g, 320.0, 100.0, 1159 - 320, 400, 30, 0.5F)
 
+        //icon
+        val x = 320 + 60
+        val y = 100 + 60
+        val code = ImageIO.read(this::class.java.classLoader.getResource("code.png"))
+        val clock = ImageIO.read(this::class.java.classLoader.getResource("clock.png"))
+        val chat = ImageIO.read(this::class.java.classLoader.getResource("chat.png"))
+        val key = ImageIO.read(this::class.java.classLoader.getResource("key.png"))
+        g.drawImage(code, x, y, 40, 40, null)
+        g.drawImage(clock, x, y + 50, 40, 40, null)
+        g.drawImage(chat, x, y + 100, 40, 40, null)
+        g.drawImage(key, x, y + 150, 40, 40, null)
+
         //字
         g.font = Font("Microsoft YaHei", Font.PLAIN, 32)
         g.color = Color.BLACK
         g.drawString(name, cardWidth / 20 + 20, 420 + 32)
+
+        g.drawString("检测到 $name 为 ${projects.split("/")[1]} 提交了代码", x + 70, y + 32)
+        g.drawString(time, x + 70, y + 50 + 32)
+        g.drawString(message, x + 70, y + 100 + 32)
+        g.drawString(html, x + 70, y + 150 + 32)
 
         g.dispose()
 
