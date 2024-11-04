@@ -163,11 +163,11 @@ class CardUtil {
         g.font = Font("Microsoft YaHei", Font.PLAIN, 32)
         g.color = Color.BLACK
         if (name.length < 2)
-            g.drawString(name, cardWidth / 20 + 68, boxLength.toInt() + (boxHigh / 2) + 50)
+            g.drawString(name, cardWidth / 20 + 68, boxLength.toInt() + (boxHigh / 2) + 25)
         else if (name.length > 2 && name.length < 4)
-            g.drawString(name, cardWidth / 20 + 36, boxLength.toInt() + (boxHigh / 2) + 50)
+            g.drawString(name, cardWidth / 20 + 36, boxLength.toInt() + (boxHigh / 2) + 25)
         else
-            g.drawString(name, cardWidth / 20 + 20, boxLength.toInt() + (boxHigh / 2) + 50)
+            g.drawString(name, cardWidth / 20 + 20, boxLength.toInt() + (boxHigh / 2) + 25)
 
 
         g.drawString("检测到 $name 为 ${projects.split("/")[1]} 提交了代码", x + 70, y + 32)
