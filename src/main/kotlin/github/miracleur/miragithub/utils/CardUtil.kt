@@ -122,7 +122,7 @@ class CardUtil {
         //背景
         val randomNumber = Random.nextInt(0, 52)
         var backgroundImage = ImageIO.read(this::class.java.classLoader.getResource("backg/$randomNumber.png"))
-        if(backgroundImage == null)
+        if (backgroundImage == null)
             backgroundImage = ImageIO.read(this::class.java.classLoader.getResource("backg/$randomNumber.jpg"))
         g.drawImage(backgroundImage, 0, 0, 1200, 600, null)
 
@@ -144,7 +144,7 @@ class CardUtil {
         //框框
         val boxLength = 370.0
         val boxHigh = 60
-        drawBox(g, cardWidth / 20.0, boxLength, 200, boxHigh, 60, 0.5F)
+        drawBox(g, cardWidth / 20.0, boxLength, 200, boxHigh, 30, 0.5F)
         drawBox(g, 320.0, 60.0, 1159 - 320, 480, 60, 0.5F)
 
         //icon
@@ -163,11 +163,11 @@ class CardUtil {
         g.font = Font("Microsoft YaHei", Font.PLAIN, 32)
         g.color = Color.BLACK
         if (name.length < 2)
-            g.drawString(name, cardWidth / 20 + 68, boxLength.toInt() + (boxHigh / 2) * (5 / 4))
+            g.drawString(name, cardWidth / 20 + 68, boxLength.toInt() + (boxHigh / 2) + 50)
         else if (name.length > 2 && name.length < 4)
-            g.drawString(name, cardWidth / 20 + 36, boxLength.toInt() + (boxHigh / 2) * (5 / 4))
+            g.drawString(name, cardWidth / 20 + 36, boxLength.toInt() + (boxHigh / 2) + 50)
         else
-            g.drawString(name, cardWidth / 20 + 20, boxLength.toInt() + (boxHigh / 2) * (5 / 4))
+            g.drawString(name, cardWidth / 20 + 20, boxLength.toInt() + (boxHigh / 2) + 50)
 
 
         g.drawString("检测到 $name 为 ${projects.split("/")[1]} 提交了代码", x + 70, y + 32)
