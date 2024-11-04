@@ -107,7 +107,7 @@ class CardUtil {
     }
 
     @Throws(Exception::class)
-    suspend fun getCard(html: String, message: String, projects: String, avatar: String, name: String, time: String, event: Contact): Image {
+    suspend fun getCard(githubName: String, html: String, message: String, projects: String, avatar: String, name: String, time: String, event: Contact): Image {
         val avatarResource: ExternalResource = ImageUtil.Companion.getImage(avatar).toByteArray().toExternalResource()
         val theImageId: String = avatarResource.uploadAsImage(event).imageId
         withContext(Dispatchers.IO) {
@@ -162,12 +162,12 @@ class CardUtil {
         //字
         g.font = Font("Microsoft YaHei", Font.PLAIN, 32)
         g.color = Color.BLACK
-        if (name.length < 2)
-            g.drawString(name, cardWidth / 20 + 68, boxLength.toInt() + (boxHigh / 2) + 10)
-        else if (name.length > 2 && name.length < 4)
-            g.drawString(name, cardWidth / 20 + 36, boxLength.toInt() + (boxHigh / 2) + 10)
+        if (githubName.length < 2)
+            g.drawString(githubName, cardWidth / 20 + 68, boxLength.toInt() + (boxHigh / 2) + 10)
+        else if (githubName.length > 2 && githubName.length < 4)
+            g.drawString(githubName, cardWidth / 20 + 36, boxLength.toInt() + (boxHigh / 2) + 10)
         else
-            g.drawString(name, cardWidth / 20 + 20, boxLength.toInt() + (boxHigh / 2) + 10)
+            g.drawString(githubName, cardWidth / 20 + 20, boxLength.toInt() + (boxHigh / 2) + 10)
 
 
         g.drawString("检测到 $name 为 ${projects.split("/")[1]} 提交了代码", x + 70, y + 32)

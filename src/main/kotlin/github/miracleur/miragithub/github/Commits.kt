@@ -89,6 +89,7 @@ class Commits {
                 message = JSONObject.parseObject(commit.toString())["message"]
                 html = jsonObject["html_url"]
                 val sendHtml = html.toString().split("/")[6]
+                val githubName = html.toString().split("/")[3]
 
                 val committers: Any? = jsonObject["committer"]
                 avatar = JSONObject.parseObject(committers.toString())["avatar_url"]
@@ -98,6 +99,7 @@ class Commits {
                     for (bot in bots) {
                         bot.getGroup(e.toString().toLong())?.sendMessage(
                             CardUtil().getCard(
+                                githubName = githubName,
                                 html = sendHtml,
                                 message = message.toString(),
                                 projects.toString(),
@@ -113,6 +115,7 @@ class Commits {
                     for (bot in bots) {
                         bot.getStranger(u.toString().toLong())?.sendMessage(
                             CardUtil().getCard(
+                                githubName = githubName,
                                 html = sendHtml,
                                 message = message.toString(),
                                 projects.toString(),
