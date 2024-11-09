@@ -14,7 +14,13 @@ import net.mamoe.mirai.utils.info
 object MiraGithub : KotlinPlugin(
     JvmPluginDescription(id = "github.miracleur.miragithub", name = "MiraGithub", version = "0.1.0") {
         author("MiracleUR")
-        info("""实时监控github仓库更新，并推送消息到QQ群。""".trimIndent())
+        info(
+            """实时监控github仓库更新，并推送消息到QQ群""".trimIndent()
+        )
+        info(
+            """在研究新功能喵 
+                       --圣迹""".trimIndent()
+        )
     }
 ) {
     override fun onEnable() {
@@ -22,6 +28,8 @@ object MiraGithub : KotlinPlugin(
         CommandManager.registerCommand(Github(), true)
         globalEventChannel().subscribeGroupMessages {
             "/github rate_limit" reply "this command is not available now"
+            "?" reply "¿"
+            "¿" reply "?"
         }
     }
 

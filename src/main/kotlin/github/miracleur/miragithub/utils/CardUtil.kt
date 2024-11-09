@@ -121,9 +121,10 @@ class CardUtil {
 
         //背景
         val randomNumber = Random.nextInt(0, 52)
-        var backgroundImage = ImageIO.read(this::class.java.classLoader.getResource("backg/$randomNumber.png"))
-        if (backgroundImage == null)
-            backgroundImage = ImageIO.read(this::class.java.classLoader.getResource("backg/$randomNumber.jpg"))
+        var backgroundImage = ImageIO.read(
+            this::class.java.classLoader.getResource("backg/$randomNumber.png")
+                ?: this::class.java.classLoader.getResource("backg/$randomNumber.jpg")
+        )
         g.drawImage(backgroundImage, 0, 0, 1200, 600, null)
 
         // 创建高斯模糊操作
